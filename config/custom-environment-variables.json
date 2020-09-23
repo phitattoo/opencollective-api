@@ -178,5 +178,8 @@
   },
   "pdfService": {
     "fetchTransactionsReceipts": "FETCH_TRANSACTIONS_RECEIPTS"
+  },
+  "akismet": {
+    "key": "AKISMET_KEY"
   }
 }
