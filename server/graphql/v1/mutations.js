@@ -52,7 +52,6 @@ import {
 } from './mutations/orders';
 import * as paymentMethodsMutation from './mutations/paymentMethods';
 import { editTier, editTiers } from './mutations/tiers';
-import * as updateMutations from './mutations/updates';
 import { confirmUserEmail, updateUserEmail } from './mutations/users';
 import { ApplicationInputType, ApplicationType } from './Application';
 import { CollectiveInterfaceType } from './CollectiveInterface';
@@ -70,8 +69,6 @@ import {
   PaymentMethodInputType,
   StripeCreditCardDataInputType,
   TierInputType,
-  UpdateAttributesInputType,
-  UpdateInputType,
   UserInputType,
 } from './inputTypes';
 import { TransactionInterfaceType } from './TransactionInterface';
@@ -84,8 +81,6 @@ import {
   OrderType,
   PaymentMethodType,
   TierType,
-  UpdateAudienceTypeEnum,
-  UpdateType,
   UserType,
 } from './types';
 
@@ -476,64 +471,6 @@ const mutations = {
     },
     resolve(_, args, req) {
       return addFundsToCollective(args.order, req.remoteUser);
-    },
-  },
-  createUpdate: {
-    type: UpdateType,
-    args: {
-      update: {
-        type: new GraphQLNonNull(UpdateInputType),
-      },
-    },
-    resolve(_, args, req) {
-      return updateMutations.createUpdate(_, args, req);
-    },
-  },
-  editUpdate: {
-    type: UpdateType,
-    args: {
-      update: {
-        type: new GraphQLNonNull(UpdateAttributesInputType),
-      },
-    },
-    resolve(_, args, req) {
-      return updateMutations.editUpdate(_, args, req);
-    },
-  },
-  publishUpdate: {
-    type: UpdateType,
-    args: {
-      id: {
-        type: new GraphQLNonNull(GraphQLInt),
-      },
-      notificationAudience: {
-        type: new GraphQLNonNull(UpdateAudienceTypeEnum),
-      },
-    },
-    resolve(_, args, req) {
-      return updateMutations.publishUpdate(_, args, req);
-    },
-  },
-  unpublishUpdate: {
-    type: UpdateType,
-    args: {
-      id: {
-        type: new GraphQLNonNull(GraphQLInt),
-      },
-    },
-    resolve(_, args, req) {
-      return updateMutations.unpublishUpdate(_, args, req);
-    },
-  },
-  deleteUpdate: {
-    type: UpdateType,
-    args: {
-      id: {
-        type: new GraphQLNonNull(GraphQLInt),
-      },
-    },
-    resolve(_, args, req) {
-      return updateMutations.deleteUpdate(_, args, req);
     },
   },
   createComment: {

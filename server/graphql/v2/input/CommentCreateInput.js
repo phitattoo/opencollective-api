@@ -18,5 +18,6 @@ export const CommentCreateInput = new GraphQLInputObjectType({
       deprecationReason: '2019-02-26: Please use the expense field',
     },
     ConversationId: { type: GraphQLString },
+    UpdateId: { type: GraphQLString },
   }),
 });

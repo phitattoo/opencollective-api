@@ -44,6 +44,10 @@ const commentMutations = {
         args.comment.ConversationId = idDecode(args.comment.ConversationId, IDENTIFIER_TYPES.CONVERSATION);
       }
 
+      if (args.comment.UpdateId) {
+        args.comment.UpdateId = idDecode(args.comment.UpdateId, IDENTIFIER_TYPES.UPDATE);
+      }
+
       if (args.comment.expense) {
         const expense = await fetchExpenseWithReference(args.comment.expense, req);
         if (!expense) {

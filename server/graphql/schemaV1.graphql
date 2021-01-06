@@ -360,6 +360,7 @@ type CollectiveFeatures {
   CONTACT_COLLECTIVE: CollectiveFeatureStatus
   CONTACT_FORM: CollectiveFeatureStatus
   CREATE_COLLECTIVE: CollectiveFeatureStatus
+  TRANSACTIONS: CollectiveFeatureStatus
   CROSS_CURRENCY_MANUAL_TRANSACTIONS: CollectiveFeatureStatus
   TRANSFERWISE: CollectiveFeatureStatus
   PAYPAL_PAYOUTS: CollectiveFeatureStatus
@@ -2111,11 +2112,6 @@ type Mutation {
     @deprecated(reason: "2020-10-13: This endpoint has been moved to GQLV2")
   confirmOrder(order: ConfirmOrderInputType!): OrderType
   addFundsToCollective(order: OrderInputType!): OrderType
-  createUpdate(update: UpdateInputType!): UpdateType
-  editUpdate(update: UpdateAttributesInputType!): UpdateType
-  publishUpdate(id: Int!, notificationAudience: UpdateAudienceTypeEnum!): UpdateType
-  unpublishUpdate(id: Int!): UpdateType
-  deleteUpdate(id: Int!): UpdateType
   createComment(comment: CommentInputType!): CommentType
   editComment(comment: CommentAttributesInputType!): CommentType
   deleteComment(id: Int!): CommentType
@@ -3915,23 +3911,6 @@ enum TypeOfCollective {
 }
 
 """
-Input type for UpdateType
-"""
-input UpdateAttributesInputType {
-  id: Int
-  views: Int
-  slug: String
-  title: String
-  image: String
-  isPrivate: Boolean
-  makePublicOn: IsoDateString
-  markdown: String
-  html: String
-  fromCollective: CollectiveAttributesInputType
-  tier: TierInputType
-}
-
-"""
 Defines targets for an update
 """
 enum UpdateAudienceTypeEnum {
@@ -3949,24 +3928,6 @@ enum UpdateAudienceTypeEnum {
   Will be sent to financial contributors
   """
   FINANCIAL_CONTRIBUTORS
-}
-
-"""
-Input type for UpdateType
-"""
-input UpdateInputType {
-  id: Int
-  views: Int
-  slug: String
-  title: String
-  image: String
-  isPrivate: Boolean
-  makePublicOn: IsoDateString
-  markdown: String
-  html: String
-  fromCollective: CollectiveAttributesInputType
-  collective: CollectiveAttributesInputType!
-  tier: TierInputType
 }
 
 """
